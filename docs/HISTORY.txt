@@ -1,10 +1,10 @@
 Changelog
 =========
 
-1.1.dev (unreleased)
+1.0.1 (unreleased)
 ----------------
 
-- Docs update
+- Docs update and fixed manifest file [amleczko]
 
 
 1.0 (2012-10-15)
