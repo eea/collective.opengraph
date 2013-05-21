@@ -1,25 +1,22 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.1\n"
 "POT-Creation-Date: 2013-05-21 09:35+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-05-21 07:26+0000\n"
+"Last-Translator: Infanger Julian <j.infanger@4teamwork.ch>\n"
+"Language-Team: Infanger Julian <j.infanger@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Name: German\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.opengraph\n"
 
 #: ./interfaces.py:52
 msgid "A default opengraph type metatag"
-msgstr ""
+msgstr "Standard Open Graph Typ (og:type)"
 
 #: ./interfaces.py:28
 msgid "A dict of opengraph metatags which will be used by the opengraph viewlet"
@@ -27,55 +24,55 @@ msgstr ""
 
 #: ./interfaces.py:61
 msgid "A list of types which can be selected for opengraph type metatag"
-msgstr ""
+msgstr "Eine Liste von Open Graph Typen, die zur Auswahl stehen."
 
 #: ./interfaces.py:68
 msgid "A list of types which can be tagged by opengraph metatag"
-msgstr ""
+msgstr "Liste der Inhaltstypen, die mit Open Graph Metatags versehen werden können."
 
 #: ./interfaces.py:47
 msgid "Admins"
-msgstr ""
+msgstr "Administatoren"
 
 #: ./browser.py:64
 msgid "Apply"
-msgstr ""
+msgstr "Speichern"
 
 #: ./browser.py:81
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: ./browser.py:58
 msgid "Configure Collective Opengraph"
-msgstr ""
+msgstr "Collective Open Graph konfigurieren"
 
 #: ./interfaces.py:66
 msgid "Content types"
-msgstr ""
+msgstr "Inhaltstypen"
 
 #: ./browser.py:52
 msgid "Data successfully updated."
-msgstr ""
+msgstr "Daten Erfolgreich aktualisiert."
 
 #: ./interfaces.py:51
 msgid "Default type"
-msgstr ""
+msgstr "Standarttyp"
 
 #: ./profiles/default/actions.xml
 msgid "Disable Opengraph"
-msgstr ""
+msgstr "Open Graph deaktivieren"
 
 #: ./profiles/default/actions.xml
 msgid "Disable Opengraph meta tags for this item"
-msgstr ""
+msgstr "Open Graph Meta-Tags für dieses Objekt deaktivieren"
 
 #: ./profiles/default/actions.xml
 msgid "Enable Opengraph"
-msgstr ""
+msgstr "Open Graph aktivieren"
 
 #: ./profiles/default/actions.xml
 msgid "Enable Opengraph meta tags for this item"
-msgstr ""
+msgstr "Open Graph Meta-Tags für dieses Objekt aktivieren"
 
 #: ./interfaces.py:43
 msgid "Facebook api secret"
@@ -87,33 +84,32 @@ msgstr ""
 
 #: ./interfaces.py:25
 msgid "List of opengraph metatags"
-msgstr ""
+msgstr "Liste von Open Graph Meta-Tags"
 
 #: ./browser.py:53
 msgid "No changes were applied."
-msgstr ""
+msgstr "Keine Änderungen wurden übernommen"
 
 #: ./browser.py:34
 msgid "The opengraph tags has been disabled"
-msgstr ""
+msgstr "Open Graph Tags wurden deaktiviert."
 
 #: ./browser.py:25
 msgid "The opengraph tags has been enabled"
-msgstr ""
+msgstr "Open Graph Tags wurden aktiviert."
 
 #: ./browser.py:54
 msgid "There were some errors."
-msgstr ""
+msgstr "Es sind Fehler aufgetreten."
 
 #: ./interfaces.py:58
 msgid "Type of contents"
-msgstr ""
+msgstr "Inahltstypen"
 
 #: ./utils.py:41
 msgid "objects updated."
-msgstr ""
+msgstr "Objekte aktualisiert"
 
 #: ./utils.py:47
 msgid "update(s) on object(s) failed"
-msgstr ""
-
+msgstr "Aktualisieren von Objekten fehlgeschlagen"
