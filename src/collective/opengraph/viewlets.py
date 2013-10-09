@@ -1,7 +1,8 @@
 from Acquisition import aq_inner
 from zope.interface import implements
 from zope.component import getUtility
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 from ordereddict import OrderedDict
 
 from plone.app.layout.viewlets import ViewletBase
@@ -60,13 +61,14 @@ class ATMetatags(object):
                      ('og:image', self.image_url),
                      ('og:site_name', self.sitename),
                      ('og:description', self.description)])
-	if self.content_type:
-            tags.update({'og:type' : self.content_type})
-        if self.admins:
-            tags.update({'fb:admins' : self.admins})
-        if self.app_id:
-            tags.update({'fb:app_id' : self.app_id})
-	return tags
+
+        if self.content_type:
+            tags.update({'og:type': self.content_type})
+            if self.admins:
+                tags.update({'fb:admins': self.admins})
+            if self.app_id:
+                tags.update({'fb:app_id': self.app_id})
+        return tags
 
     @property
     def image_url(self):
@@ -99,7 +101,7 @@ class ATMetatags(object):
     def sitename(self):
         sitename = self.portal_state.portal().Title()
         return decode_str(sitename, self.default_charset)
-    
+
     @property
     def content_type(self):
         default_type = self.settings.default_type or ''
@@ -124,4 +126,3 @@ class OGViewlet(ViewletBase):
 
     def metatags(self):
         return IOpengraphMetatags(self.context).metatags.items()
-
