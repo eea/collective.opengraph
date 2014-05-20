@@ -12,7 +12,7 @@ from plone.registry.interfaces import IRegistry
 
 from collective.opengraph.interfaces import IOpengraphSettings, IOpengraphMetatags
 
-IMG_SIZE = 'thumb'
+IMG_SIZE = 'mini'
 HAS_LEADIMAGE = True
 try:
     from collective.contentleadimage.config import IMAGE_FIELD_NAME
