@@ -1,3 +1,5 @@
+from zope.globalrequest import getRequest
+from zope.component import getMultiAdapter
 from Acquisition import aq_inner
 from zope.interface import implements
 from zope.component import getUtility
@@ -78,16 +80,18 @@ class ATMetatags(object):
         - portal logo
         """
         context = aq_inner(self.context)
-        obj_url = context.absolute_url()
         if hasattr(context, 'getField'):
             field = self.context.getField('image')
             if not field and HAS_LEADIMAGE:
                 field = context.getField(IMAGE_FIELD_NAME)
 
             if field and field.get_size(context) > 0:
-                return u'%s/%s_%s' % (obj_url, field.getName(), self.img_size)
+                request = getRequest()
+                scales = getMultiAdapter((context, request), name='images')
+                thumbnail = scales.scale(field.getName(), scale=self.img_size)
+                return decode_str(thumbnail.url, self.default_charset)
 
-        return "%s/logo.jpg" % self.portal_state.portal_url()
+        return u"%s/logo.jpg" % self.portal_state.portal_url()
 
     @property
     def description(self):
