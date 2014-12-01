@@ -1,0 +1,13 @@
+[report]
+omit =
+    extras/*
+    buildout-cache/*
+    bin/*
+    parts/*
+    eggs/*
+    */test*
+    develop-eggs/*
+    bootstrap.py
+    src/collective.opengraph.egg-info/*
+    /home/*/.buildout/eggs/*
+    /home/*/lib/python*

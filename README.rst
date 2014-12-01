@@ -1,6 +1,13 @@
 collective.opengraph
 ====================
 
+.. image:: https://travis-ci.org/bogdangi/collective.opengraph.png?branch=ci-support-11
+   :target: https://travis-ci.org/bogdangi/collective.opengraph
+
+.. image:: https://coveralls.io/repos/bogdangi/collective.opengraph/badge.png?branch=ci-support-11
+  :target: https://coveralls.io/r/bogdangi/collective.opengraph?branch=ci-support-11
+
+
 This package is a part of the Plone's collective.fg bundle. It adds the opengraph metadata to your HTML head section.
 
 Supported metadata:
