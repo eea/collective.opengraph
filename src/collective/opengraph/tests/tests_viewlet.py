@@ -17,7 +17,6 @@ from plone.registry.interfaces import IRegistry
 from collective.opengraph.interfaces import IBrowserLayer
 from collective.opengraph.interfaces import IOpengraphSettings
 from collective.opengraph.interfaces import IOpengraphable
-from collective.opengraph.viewlets import IMG_SIZE
 
 from layer import OPENGRAPH_INTEGRATION_TESTING
 
@@ -117,9 +116,12 @@ class OpenGraphViewletTests(unittest.TestCase):
         opengraph_viewlet.update()
         html = opengraph_viewlet.render()
 
+        scales = self.news.restrictedTraverse('@@images')
+        scaled_image = scales.scale('image', width=1200, height=630)
+
         params = {'title': NEWS_TITLE,
                   'url': self.news.absolute_url(),
-                  'image': "%s/image_%s" % (self.news.absolute_url(), IMG_SIZE),
+                  'image': scaled_image.absolute_url(),
                   'site_name': self.portal.Title(),
                   'description': NEWS_DESCRIPTION}
         self.assertEquals((VIEWLET_HTML % params).replace("\n", ''), html.replace("\n", ''))
