@@ -19,7 +19,7 @@ Customization
 -------------
 
 One of the goals of this package is to allow developers extend the default metadata definition.
-It's availabe threw IOpengrapMetatags adapter::
+It's availabe through the IOpengrapMetatags adapter::
 
 	from collective.opengraph.interfaces IOpengraphMetatags
 	from collective.opengraph.viewlets import ATMetatags
@@ -47,3 +47,11 @@ You can also customize existing og values::
 	    @property
             def title(self):
                 return '%s - Lorem ipsum' % self.context.Title()
+
+Once your class is declared (let's say in a *viewlets.py* file), add the following *adapter* tag within your *overrides.zcml* file::
+
+    <adapter 
+        for="Products.ATContentTypes.interface.interfaces.IATContentType"
+        factory=".viewlets.MyATMetatags"
+        provides="collective.opengraph.interfaces.IOpengraphMetatags"
+       />
