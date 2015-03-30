@@ -122,6 +122,24 @@ class ATMetatags(object):
         return decode_str(appid, self.default_charset)
 
 
+class DXMetatags(ATMetatags):
+
+    @property
+    def image_url(self):
+        """Return an image url for the context in that order
+        - context image field
+        - context lead image field
+        - portal logo
+        """
+        context = aq_inner(self.context)
+        obj_url = context.absolute_url()
+        if hasattr(context, 'image'):
+            field = self.context.image
+            if field and field.size > 0:
+                return u'%s/@@images/%s/%s' % (obj_url, 'image', self.img_size)
+        return "%s/logo.jpg" % self.portal_state.portal_url()
+
+
 class OGViewlet(ViewletBase):
     template = ViewPageTemplateFile('ogviewlet.pt')
 
