@@ -13,6 +13,9 @@ Changelog
 - Register locales directory.
   [Julian Infanger]
 
+- Support Dexterity content types
+  [simahawk]
+
 
 1.0.1 (2012-10-16)
 ------------------

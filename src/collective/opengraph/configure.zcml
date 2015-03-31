@@ -3,6 +3,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.opengraph">
 
@@ -19,10 +20,10 @@
     />
 
   <browser:resource
-        name="collectiveopengraph.png"
-        image="facebook.png"
-        layer=".interfaces.IBrowserLayer"
-        />
+    name="collectiveopengraph.png"
+    image="facebook.png"
+    layer=".interfaces.IBrowserLayer"
+    />
 
   <browser:viewlet
     name="collective.opengraph.meta"
@@ -78,18 +79,37 @@
       factory=".utils.opengraph_settings"
       />
 
-  <!-- Adapter to mark object with interface -->
-  <adapter
+
+  <!-- ARCHETYPES -->
+  <configure zcml:condition="installed Products.ATContentTypes">
+    <adapter
       for="Products.ATContentTypes.interface.interfaces.IATContentType"
       factory=".utils.OpengraphMarker"
       provides=".interfaces.IOpengraphMarker"
       />
 
-  <adapter
+    <adapter
       for="Products.ATContentTypes.interface.interfaces.IATContentType"
       factory=".viewlets.ATMetatags"
       provides=".interfaces.IOpengraphMetatags"
       />
+  </configure>
+
+  <!-- DEXTERITY -->
+  <configure zcml:condition="installed plone.dexterity">
+    <adapter
+        for="plone.dexterity.interfaces.IDexterityContent"
+        factory=".utils.OpengraphMarker"
+        provides=".interfaces.IOpengraphMarker"
+        />
+
+    <adapter
+        for="plone.dexterity.interfaces.IDexterityContent"
+        factory=".viewlets.DXMetatags"
+        provides=".interfaces.IOpengraphMetatags"
+        />
+  </configure>
+
 
   <subscriber
      handler=".events.updateOpengraphableObjects"
