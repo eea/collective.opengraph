@@ -1,6 +1,6 @@
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
-from zope.site.hooks import getSite
+from zope.component.hooks import getSite
 from zope.event import notify
 
 from Products.Five import BrowserView
