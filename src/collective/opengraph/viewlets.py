@@ -3,8 +3,7 @@ from zope.component import getMultiAdapter
 from Acquisition import aq_inner
 from zope.interface import implements
 from zope.component import getUtility
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from ordereddict import OrderedDict
 
 from plone.app.layout.viewlets import ViewletBase

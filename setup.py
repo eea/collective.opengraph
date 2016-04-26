@@ -28,6 +28,7 @@ setup(name='collective.opengraph',
       install_requires=[
           'setuptools',
           'ordereddict',
+          'plone.api',
           # -*- Extra requirements: -*-
       ],
       extras_require=dict(test=tests_require),

@@ -19,6 +19,21 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+  <genericsetup:registerProfile
+    name="uninstall"
+    title="Uninstall Collective Opengraph"
+    directory="profiles/uninstall"
+    description="Un-Installs the collective.opengraph package"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  
+  <genericsetup:importStep
+      name="collective.opengraph.uninstall"
+      title="collective.opengraph: uninstall steps"
+      description="Various uninstall steps that are not handled by GS import/export handlers."
+      handler="collective.opengraph.setuphandlers.uninstall" />
+
+
   <browser:resource
     name="collectiveopengraph.png"
     image="facebook.png"
