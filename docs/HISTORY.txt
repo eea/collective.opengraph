@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1 (unreleased)
-------------------
+1.1.rc1 (2017-05-26)
+--------------------
 
 - Plone 4.3 compatibility
   [erral]
