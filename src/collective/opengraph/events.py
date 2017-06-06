@@ -1,7 +1,8 @@
-from zope.interface import implements
+from zope.interface import implements, alsoProvides
 from plone.app.controlpanel.interfaces import IConfigurationChangedEvent
 from plone.app.controlpanel.events import ConfigurationChangedEvent
 from utils import update_opengraphable_objects
+from collective.opengraph.interfaces import IOpengraphable
 
 
 class IOpengraphSettingsEvent(IConfigurationChangedEvent):
@@ -18,3 +19,11 @@ def updateOpengraphableObjects(event):
     """
     update_opengraphable_objects(event.context,
                         event.data.get('content_types', []))
+
+
+def enableOpengraph(obj, event):
+    """ enable opengraph on object added
+    """
+    if not 'portal_factory' in obj.absolute_url():
+        alsoProvides(obj, IOpengraphable)
+        obj.reindexObject(idxs=['object_provides'])

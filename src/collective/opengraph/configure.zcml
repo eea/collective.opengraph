@@ -108,6 +108,11 @@
       factory=".viewlets.ATMetatags"
       provides=".interfaces.IOpengraphMetatags"
       />
+
+    <subscriber
+            handler=".events.enableOpengraph"
+            for="Products.Archetypes.interfaces.base.IBaseObject
+               zope.lifecycleevent.interfaces.IObjectAddedEvent" />
   </configure>
 
   <!-- DEXTERITY -->
@@ -129,5 +134,7 @@
   <subscriber
      handler=".events.updateOpengraphableObjects"
      for=".events.IOpengraphSettingsEvent" />
+
+
 
 </configure>
