@@ -42,7 +42,7 @@
 
   <browser:viewlet
     name="collective.opengraph.meta"
-    for = ".interfaces.IOpengraphable"
+    for = "*"
     manager = "plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
     class=".viewlets.OGViewlet"
     layer = ".interfaces.IBrowserLayer"
@@ -108,6 +108,7 @@
       factory=".viewlets.ATMetatags"
       provides=".interfaces.IOpengraphMetatags"
       />
+
   </configure>
 
   <!-- DEXTERITY -->
@@ -129,5 +130,7 @@
   <subscriber
      handler=".events.updateOpengraphableObjects"
      for=".events.IOpengraphSettingsEvent" />
+
+
 
 </configure>

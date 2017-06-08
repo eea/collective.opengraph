@@ -71,7 +71,7 @@ class OpengraphControlpanelForm(extensible.ExtensibleForm, form.EditForm):
         changes = self.applyChanges(data)
         if changes:
             self.status = self.successMessage
-            notify(OpengraphSettingsEvent(self.context, data))
+            # notify(OpengraphSettingsEvent(self.context, data))
         else:
             self.status = self.noChangesMessage
 
