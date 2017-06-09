@@ -1,6 +1,7 @@
 from zope.interface import implements, alsoProvides, noLongerProvides
 from zope.component import getUtility
 from zope.component import queryUtility
+from zope.annotation import IAnnotations
 from Products.CMFCore.utils import getToolByName
 
 from plone.registry.interfaces import IRegistry
@@ -14,18 +15,18 @@ from collective.opengraph import OpengraphMessageFactory as _
 
 
 def opengraph_settings(context):
-    return getUtility(IRegistry).forInterface(IOpengraphSettings)
+    return getUtility(IRegistry).forInterface(IOpengraphSettings, check=False)
 
 
 def update_opengraphable_objects(context, new_ct):
     g_marker = queryUtility(IOpengraphMarkerUtility)
     if not g_marker:
         return
-    options = opengraph_settings(context)
+    options = IAnnotations(context)
 
     ct = getToolByName(context, 'portal_catalog')
 
-    olds_pt = options.content_types
+    olds_pt = options.get('old_content_types', [])
     if new_ct == olds_pt:
         return
     adds = []
@@ -69,7 +70,7 @@ class OpengraphMarker(object):
     def process(self):
         """ Proceed to the markage
         """
-        try: 
+        try:
             opengraphable_types = self.opengraphable_types
         except:
             return

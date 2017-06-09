@@ -52,7 +52,7 @@ class ATMetatags(object):
     @property
     def settings(self):
         registry = getUtility(IRegistry)
-        return registry.forInterface(IOpengraphSettings)
+        return registry.forInterface(IOpengraphSettings, check=False)
 
     @property
     def metatags(self):
@@ -147,4 +147,4 @@ class OGViewlet(ViewletBase):
 
     def metatags(self):
         meta_adapter = queryAdapter(self.context, IOpengraphMetatags)
-        return meta_adapter.metatags.items() or ""
+        return meta_adapter.metatags.items() if meta_adapter else ""

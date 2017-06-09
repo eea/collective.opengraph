@@ -13,6 +13,6 @@ def opengraphTypesVocab(context):
         return SimpleVocabulary.createTerm(term, term, term)
 
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(IOpengraphSettings)
+    settings = registry.forInterface(IOpengraphSettings, check=False)
     terms = settings.types
     return SimpleVocabulary([_createterm(term) for term in terms])

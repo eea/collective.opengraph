@@ -8,6 +8,8 @@
     i18n_domain="collective.opengraph">
 
   <include package="plone.app.registry" />
+  <include package=".upgrades" />
+
 
   <i18n:registerTranslations directory="locales" />
 
@@ -26,7 +28,7 @@
     description="Un-Installs the collective.opengraph package"
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
-  
+
   <genericsetup:importStep
       name="collective.opengraph.uninstall"
       title="collective.opengraph: uninstall steps"
@@ -58,16 +60,25 @@
   <browser:page
     name="opengraph_enabled"
     layer=".interfaces.IBrowserLayer"
-    for = "*"
+    for="*"
     class=".browser.OpengraphEnabled"
     permission="zope2.View"
-    allowed_attributes="is_opengraph_enabled"
+    allowed_attributes="is_opengraph_enabled is_opengraph_sitewide_enabled"
+    />
+
+  <browser:page
+    name="opengraph_sitewide_enabled"
+    layer=".interfaces.IBrowserLayer"
+    for="*"
+    class=".browser.OpengraphSitewideEnabled"
+    permission="zope2.View"
+    allowed_attributes="is_opengraph_enabled is_opengraph_sitewide_enabled"
     />
 
   <browser:page
     name="disable_opengraph"
     layer=".interfaces.IBrowserLayer"
-    for = "*"
+    for="*"
     class=".browser.DisableOpengraph"
     permission="cmf.ModifyPortalContent"
     />

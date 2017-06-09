@@ -11,7 +11,7 @@
    <property
        name="url_expr">string:$object_url/enable_opengraph</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">not: object/opengraph_enabled/is_opengraph_enabled</property>
+   <property name="available_expr">python: not object.restrictedTraverse('@@opengraph_enabled')() and not object.restrictedTraverse('@@opengraph_sitewide_enabled')()</property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>
@@ -26,7 +26,7 @@
    <property
        name="url_expr">string:$object_url/disable_opengraph</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">object/opengraph_enabled/is_opengraph_enabled</property>
+   <property name="available_expr">python: object.restrictedTraverse('@@opengraph_enabled')() and not object.restrictedTraverse('@@opengraph_sitewide_enabled')()</property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>

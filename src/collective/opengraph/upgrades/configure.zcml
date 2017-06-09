@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="collective.opengraph">
+
+  <genericsetup:upgradeSteps
+          source="0.1"
+          destination="1.1"
+          profile="collective.opengraph:default">
+      <genericsetup:upgradeStep
+              title="Update IOpengraphSettings registry settings"
+              handler=".evolve11.evolve" />
+
+  </genericsetup:upgradeSteps>
+
+</configure>
