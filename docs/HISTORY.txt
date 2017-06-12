@@ -4,7 +4,7 @@ Changelog
 1.1.dev1 (unreleased)
 ---------------------
 
-- Added sitewide enabling bypassing need to enabler per document
+- Added sitewide enabling bypassing need to enable per document
   [ichim-david]
 - Avoid catalog search when sitewide isn't enabled and we need
   to update both new and old selected content types
