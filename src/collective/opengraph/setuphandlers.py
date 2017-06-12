@@ -3,6 +3,7 @@ from plone import api
 import transaction
 from zope import interface
 from zope.component.interfaces import ComponentLookupError
+from zope.annotation import IAnnotations
 
 from collective.opengraph.interfaces import IOpengraphable, IOpengraphMarker
 from collective.opengraph.interfaces import IOpengraphMarkerUtility
@@ -28,6 +29,9 @@ def uninstall(context):
         ob.reindexObject(idxs=['object_provides'])
     log.info("Unregistering utility")
     portal = api.portal.get()
+    anno = IAnnotations(portal)
+    if anno.get('old_content_types'):
+        del anno['old_content_types']
     sm = portal.getSiteManager()
     try:
         util = sm.getUtility(IOpengraphMarkerUtility)
