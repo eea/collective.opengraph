@@ -1,7 +1,9 @@
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
+from zope.component import getUtility
 from zope.component.hooks import getSite
 from zope.event import notify
+from zope.annotation import IAnnotations
 
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
@@ -9,6 +11,7 @@ from Products.CMFCore.utils import getToolByName
 from z3c.form import field, form, button
 from plone.z3cform.fieldsets import extensible
 from plone.z3cform.layout import wrap_form
+from plone.registry.interfaces import IRegistry
 
 from interfaces import IOpengraphable
 from interfaces import IOpengraphSettings
@@ -37,10 +40,21 @@ class DisableOpengraph(BrowserView):
 
 
 class OpengraphEnabled(BrowserView):
+    """ Check if opengraph enabled
+    """
 
-    @property
-    def is_opengraph_enabled(self):
+    def __call__(self):
         return IOpengraphable.providedBy(self.context)
+
+
+class OpengraphSitewideEnabled(BrowserView):
+    """ Check if opengraph enabled sitewide
+    """
+    def __call__(self):
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(IOpengraphSettings, check=False)
+        enabled_sitewide = settings.enabled_sitewide or False
+        return enabled_sitewide
 
 
 def back_to_controlpanel(self):
@@ -67,11 +81,16 @@ class OpengraphControlpanelForm(extensible.ExtensibleForm, form.EditForm):
         if errors:
             self.status = self.formErrorsMessage
             return
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(IOpengraphSettings, check=False)
+        IAnnotations(self.context)['old_content_types'] = settings.content_types
 
         changes = self.applyChanges(data)
         if changes:
             self.status = self.successMessage
-            notify(OpengraphSettingsEvent(self.context, data))
+            if not self.context.restrictedTraverse(
+                    '@@opengraph_sitewide_enabled')():
+                notify(OpengraphSettingsEvent(self.context, data))
         else:
             self.status = self.noChangesMessage
 

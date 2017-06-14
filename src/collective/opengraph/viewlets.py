@@ -2,7 +2,7 @@ from zope.globalrequest import getRequest
 from zope.component import getMultiAdapter
 from Acquisition import aq_inner
 from zope.interface import implements
-from zope.component import getUtility
+from zope.component import getUtility, queryAdapter
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from ordereddict import OrderedDict
 
@@ -52,7 +52,7 @@ class ATMetatags(object):
     @property
     def settings(self):
         registry = getUtility(IRegistry)
-        return registry.forInterface(IOpengraphSettings)
+        return registry.forInterface(IOpengraphSettings, check=False)
 
     @property
     def metatags(self):
@@ -146,4 +146,5 @@ class OGViewlet(ViewletBase):
         return self.template()
 
     def metatags(self):
-        return IOpengraphMetatags(self.context).metatags.items()
+        meta_adapter = queryAdapter(self.context, IOpengraphMetatags)
+        return meta_adapter.metatags.items() if meta_adapter else ""

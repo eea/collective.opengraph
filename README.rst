@@ -18,9 +18,9 @@ Supported metadata:
  * og:image your webpage image (either 'image' field of your context or collective.contentleadimage one)
 
 from the control panel you can manage following settings:
-- the default og:type 
-- which content types should be opengraph metadata aware
-
+ * the default og:type 
+ * which content types should be opengraph metadata aware
+ * if opengraph metadata should be enabled sitewide for all content types
 
 Customization
 -------------

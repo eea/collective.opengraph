@@ -38,7 +38,7 @@ class IOpengraphSettings(Interface):
     app_id = schema.TextLine(
             title=_(u"Facebook app id"),
             required=False)
-    
+
     api_secret = schema.TextLine(
                 title=_(u"Facebook api secret"),
                 required=False)
@@ -48,7 +48,7 @@ class IOpengraphSettings(Interface):
             required = False)
 
     default_type = schema.Choice(
-            title= _(u"Default type"),
+            title = _(u"Default type"),
             description = _(u"A default opengraph type metatag"),
             required = True,
             vocabulary = "collective.opengraph.types",
@@ -61,6 +61,13 @@ class IOpengraphSettings(Interface):
         description = _(u"A list of types which can be selected "
                          "for opengraph type metatag"),
         value_type = schema.TextLine(title=u"Type"))
+
+    enabled_sitewide = schema.Bool(
+                title = _(u"Enable opengraph sitewide"),
+                description = _(u"Enable metatags globally disregarding the "
+                                "content types list choice"),
+                default = False,
+                required=False)
 
     content_types = schema.List(
         title = _(u'Content types'),

@@ -1,6 +1,7 @@
 from zope.interface import implements, alsoProvides, noLongerProvides
 from zope.component import getUtility
 from zope.component import queryUtility
+from zope.annotation import IAnnotations
 from Products.CMFCore.utils import getToolByName
 
 from plone.registry.interfaces import IRegistry
@@ -14,28 +15,26 @@ from collective.opengraph import OpengraphMessageFactory as _
 
 
 def opengraph_settings(context):
-    return getUtility(IRegistry).forInterface(IOpengraphSettings)
+    return getUtility(IRegistry).forInterface(IOpengraphSettings, check=False)
 
 
 def update_opengraphable_objects(context, new_ct):
     g_marker = queryUtility(IOpengraphMarkerUtility)
     if not g_marker:
         return
+    options = IAnnotations(context)
 
     ct = getToolByName(context, 'portal_catalog')
-    query = {'object_provides':
-                'collective.opengraph.interfaces.IOpengraphable'}
-    pt = [item.portal_type for item in ct.searchResults(query)]
-    olds_pt = list(set(pt))
 
+    olds_pt = options.get('old_content_types', [])
+    if new_ct == olds_pt:
+        return
     adds = []
     for new in new_ct:
         if new in olds_pt:
             olds_pt.remove(new)
         else:
             adds.append(new)
-    if len(olds_pt)==0 and len(adds)==0:
-        return
 
     nb_items, bad_items = g_marker.update(context, adds, olds_pt)
     updated = u'%d %s' % (nb_items, _(u'objects updated.'))
@@ -71,7 +70,7 @@ class OpengraphMarker(object):
     def process(self):
         """ Proceed to the markage
         """
-        try: 
+        try:
             opengraphable_types = self.opengraphable_types
         except:
             return
@@ -123,7 +122,7 @@ class OpengraphMarkerUtility(object):
         """
         return self._walker(context, 'process')
 
-    def _walker(self, context, meth, portal_type = ''):
+    def _walker(self, context, meth, portal_type=''):
         """
         """
         pc = getToolByName(context, 'portal_catalog')

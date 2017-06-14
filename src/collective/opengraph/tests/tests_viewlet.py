@@ -73,9 +73,6 @@ class OpenGraphViewletTests(unittest.TestCase):
         return viewlets_dict
 
     def testViewlet(self):
-        viewlets = self._get_viewlets(self.portal, 'plone.htmlhead.links')
-        self.assertFalse(VIEWLET_NAME in viewlets.keys())
-
         alsoProvides(self.portal, IOpengraphable)
         viewlets = self._get_viewlets(self.portal, 'plone.htmlhead.links')
         self.assertTrue(VIEWLET_NAME in viewlets.keys())
