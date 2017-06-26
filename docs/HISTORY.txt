@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.2.dev0 - (unreleased)
+-----------------------
+
 1.1 - (2017-06-26)
 ------------------
 - Added sitewide enabling bypassing need to enable per document
