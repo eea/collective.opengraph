@@ -88,7 +88,8 @@ class ATMetatags(object):
                 request = getRequest()
                 scales = getMultiAdapter((context, request), name='images')
                 thumbnail = scales.scale(field.getName(), width=1200, height=630)
-                return decode_str(thumbnail.url, self.default_charset)
+                return decode_str(getattr(thumbnail, 'url', ''),
+                                  self.default_charset)
 
         return u"%s/logo.jpg" % self.portal_state.portal_url()
 
