@@ -3,6 +3,8 @@ Changelog
 
 1.2.dev0 - (unreleased)
 -----------------------
+- Fixed case when the image field exists, but does not contain anything
+  [alecghica]
 - Fixed case when thumbnail is None
   [alecghica]
 

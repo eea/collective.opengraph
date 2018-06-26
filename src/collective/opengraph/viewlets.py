@@ -81,7 +81,7 @@ class ATMetatags(object):
         context = aq_inner(self.context)
         if hasattr(context, 'getField'):
             field = self.context.getField('image')
-            if not field and HAS_LEADIMAGE:
+            if (not field or field.get_size(context) == 0) and HAS_LEADIMAGE:
                 field = context.getField(IMAGE_FIELD_NAME)
 
             if field and field.get_size(context) > 0:
