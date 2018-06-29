@@ -3,7 +3,10 @@ Changelog
 
 1.1.dev1 (unreleased)
 ---------------------
-
+- Fixed case when the image field exists, but does not contain anything
+  [alecghica]
+- Fixed case when thumbnail is None
+  [alecghica
 - Added sitewide enabling bypassing need to enable per document
   [ichim-david]
 - Avoid catalog search when sitewide isn't enabled and we need
@@ -12,34 +15,25 @@ Changelog
 
 1.1.rc1 (2017-05-26)
 --------------------
-
 - Plone 4.3 compatibility
   [erral]
-
 - Added german translations.
   [Julian Infanger]
-
 - Register locales directory.
   [Julian Infanger]
-
 - Support Dexterity content types
   [simahawk]
 
-
 1.0.1 (2012-10-16)
 ------------------
-
 - Docs update and fixed manifest file [amleczko]
-
 
 1.0 (2012-10-15)
 ----------------
-
  - refactored and release during PloneConf2012 sprint [amleczko]
 
 0.1dev (unreleased)
 -------------------
-
 - added action to (un)mark 'IOpengraphable' content types
 - added translations
 - registered viewlet for 'IOpengraphable' content types

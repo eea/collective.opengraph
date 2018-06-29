@@ -81,14 +81,15 @@ class ATMetatags(object):
         context = aq_inner(self.context)
         if hasattr(context, 'getField'):
             field = self.context.getField('image')
-            if not field and HAS_LEADIMAGE:
+            if (not field or field.get_size(context) == 0) and HAS_LEADIMAGE:
                 field = context.getField(IMAGE_FIELD_NAME)
 
             if field and field.get_size(context) > 0:
                 request = getRequest()
                 scales = getMultiAdapter((context, request), name='images')
                 thumbnail = scales.scale(field.getName(), width=1200, height=630)
-                return decode_str(thumbnail.url, self.default_charset)
+                return decode_str(getattr(thumbnail, 'url', ''),
+                                  self.default_charset)
 
         return u"%s/logo.jpg" % self.portal_state.portal_url()
 
