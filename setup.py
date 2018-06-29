@@ -1,9 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-name = 'collective.opengraph'
-path = ['src'] + name.split('.') + ['version.txt']
-version = open(os.path.join(*path)).read().strip()
+version = '1.1.dev1'
 
 tests_require = ['plone.app.testing']
 
